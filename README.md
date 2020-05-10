@@ -9,3 +9,4 @@ Discord bot that pulls statistics from the [covid19 api](https://covid19api.com/
  - discord.js
  - node-fetch
 
+![](demo.png)
