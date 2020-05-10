@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/iiAviator/Covid19Bot/issues"
   },
-  "homepage": "https://github.com/iiAviator/Covid19Bot#readme"
+  "homepage": "https://github.com/iiAviator/Covid19Bot#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "eslint": "^7.0.0",
+    "fetch": "^1.1.0"
+  }
 }
