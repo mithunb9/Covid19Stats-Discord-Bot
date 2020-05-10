@@ -11,8 +11,8 @@ Discord bot that pulls statistics from the [covid19 api](https://covid19api.com/
 
 ### Demo:
 
-![](demo.png)
 ![](demo2.png)
+![](demo.png)
 
 ## Technologies Used:
 
