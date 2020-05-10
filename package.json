@@ -1,0 +1,19 @@
+{
+  "name": "covid19bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iiAviator/Covid19Bot.git"
+  },
+  "author": "Mithun Balasubramanian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iiAviator/Covid19Bot/issues"
+  },
+  "homepage": "https://github.com/iiAviator/Covid19Bot#readme"
+}
