@@ -1,21 +1,42 @@
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
+const token_config = require('./token.json');
 
 const client = new Discord.Client();
 
 const config = require("./config.json");
-const token_config = require("./token.json");
 
 const prefix = config.prefix;
 const token = token_config.token;
 const theme = config.theme;
+
+const helpInfoEmbed = new Discord.MessageEmbed()
+      .setColor(theme)
+      .setTitle(
+        `:grey_question: Covid19Stats Help`
+      )
+      .setDescription(`Documentation for Covid19Stats`)
+      .addField(
+        "!stats <country>",
+        "Brings up case counts for a certain country."
+      )
+      .addField(
+        "!world",
+        "Brings up total case counts for the world."
+      )
+      .addField("API: ", "https://api.covid19api.com/")
+      .setTimestamp()
+      .setFooter("Covid19Stats");
+
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on("message", async (msg) => {
-  if (msg.content.startsWith(`${prefix}world`)) {
+  if (msg.content.startsWith(`${prefix}help`)) {
+    msg.channel.send(helpInfoEmbed);
+  } else if (msg.content.startsWith(`${prefix}world`)) {
     let response = await fetch("https://api.covid19api.com/summary");
     let data = await response.json();
     let worldInfoEmbed = new Discord.MessageEmbed()
@@ -23,21 +44,21 @@ client.on("message", async (msg) => {
       .setTitle(":earth_asia: World Statistics for Covid-19: ")
       .setDescription("Global statistics for Covid-19")
       .addField(
-        "Confirmed Cases :mask:",
+        "Confirmed Cases",
         data["Global"].TotalConfirmed.toString().replace(
           /\B(?=(\d{3})+(?!\d))/g,
           ","
         )
       )
       .addField(
-        "Total Recovered :green_heart:",
+        "Total Recovered",
         data["Global"].TotalRecovered.toString().replace(
           /\B(?=(\d{3})+(?!\d))/g,
           ","
         )
       )
       .addField(
-        "Total Deaths :skull:",
+        "Total Deaths",
         data["Global"].TotalDeaths.toString().replace(
           /\B(?=(\d{3})+(?!\d))/g,
           ","
@@ -69,7 +90,7 @@ client.on("message", async (msg) => {
       }
     }
     if (countryFound == false) {
-      msg.channel.send(`Error: Could not find statistics on ${country}`);
+      msg.channel.send(`Error: Could not find statistics on ${country[0].toUpperCase() + country.slice(1,country.length)}`);  
     }
 
     let countryCode = countryData.CountryCode.toLowerCase();
@@ -81,7 +102,7 @@ client.on("message", async (msg) => {
       )
       .setDescription(`Statistics for Covid-19 in ${countryData.Country}`)
       .addField(
-        "Confirmed Cases :mask:",
+        "Confirmed Cases",
         `
         ${countryData.TotalConfirmed.toString().replace(
           /\B(?=(\d{3})+(?!\d))/g,
@@ -89,7 +110,7 @@ client.on("message", async (msg) => {
         )}`
       )
       .addField(
-        "Total Recovered :green_heart:",
+        "Total Recovered",
         `
         ${countryData.TotalRecovered.toString().replace(
           /\B(?=(\d{3})+(?!\d))/g,
@@ -97,7 +118,7 @@ client.on("message", async (msg) => {
         )}`
       )
       .addField(
-        "Total Deaths :skull:",
+        "Total Deaths",
         `
         ${countryData.TotalDeaths.toString().replace(
           /\B(?=(\d{3})+(?!\d))/g,
@@ -109,7 +130,7 @@ client.on("message", async (msg) => {
       .setFooter("Covid19Stats");
 
     msg.channel.send(countryInfoEmbed);
-  }
+  } 
 });
 
-client.login(process.env.BOT_TOKEN);
+client.login(token);
