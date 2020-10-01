@@ -6,6 +6,7 @@ Discord bot that pulls statistics from the [covid19 api](https://covid19api.com/
 
 |Command|Parameters  | Example |
 |--|--|--|
+|!help|none|!help|
 | !world |none | !world|
 |!stats|Country Code or Country|!stats United States|
 
