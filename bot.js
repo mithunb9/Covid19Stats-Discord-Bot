@@ -1,13 +1,13 @@
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
-const token_config = require('./token.json');
+// const token_config = require('./token.json');
 
 const client = new Discord.Client();
 
 const config = require("./config.json");
 
 const prefix = config.prefix;
-const token = token_config.token;
+// const token = token_config.token;
 const theme = config.theme;
 
 const helpInfoEmbed = new Discord.MessageEmbed()
@@ -133,4 +133,4 @@ client.on("message", async (msg) => {
   } 
 });
 
-client.login(token);
+client.login(process.env.BOT_TOKEN);
