@@ -65,6 +65,7 @@ client.on("message", async (msg) => {
         )
       )
       .addField("API: ", "https://api.covid19api.com/")
+      .addField("Requested By:", `<@${msg.author.id}>`)
       .setTimestamp()
       .setFooter("Covid19Stats");
 
@@ -126,6 +127,7 @@ client.on("message", async (msg) => {
         )}`
       )
       .addField("API: ", "https://api.covid19api.com/")
+      .addField("Requested By:", `<@${msg.author.id}>`)
       .setTimestamp()
       .setFooter("Covid19Stats");
 
